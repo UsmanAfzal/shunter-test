@@ -1,0 +1,19 @@
+{
+  "name": "parliament.uk-pugin",
+  "version": "0.0.1",
+  "description": "Front-end for UK Parliament",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "shunter": "*"
+  },
+  "keywords": [
+    "UK Parliament",
+    "Pugin",
+    "Front-end"
+  ],
+  "author": "UK Parliament",
+  "license": "MIT"
+}
