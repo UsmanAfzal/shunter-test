@@ -1,3 +1,3 @@
 # Build script
 script:
-  - make install; make serve & sleep 20; make test;
+  - make install; make templates & sleep 20; make test;
