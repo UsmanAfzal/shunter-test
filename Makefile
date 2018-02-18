@@ -37,6 +37,9 @@ REL_TAG=$(shell curl -s $(LATEST_REL) | jq -r '.[0].tag_name')
 install:
 	@npm i
 
+install_test:
+	@npm i --silent
+
 # When run in gocd it creates a version folder then installs npm packages
 install_to_release:
 	git checkout -b release $(REL_TAG)
@@ -102,10 +105,6 @@ watch:
 # Runs accessibility testing
 test:
 	@$(PA11Y)
-#@mkdir -p $(REPORTS_FOLDER)
-#@rm -rf $(REPORTS_FOLDER)/*
-#@node scripts/pa11y.js
-#@node scripts/w3c.js\
 
 # Builds application
 build: lint css js images icons templates json

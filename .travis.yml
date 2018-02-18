@@ -1,3 +1,8 @@
-# Build script
+install:
+  - make install_test
+
+before_script:
+  - make serve_test & sleep 10;
+
 script:
-  - make install; make serve_test & sleep 10; make test;
+  - make test;
