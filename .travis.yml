@@ -1,5 +1,5 @@
 install:
-  - make install_test
+  - make install
 
 before_script:
   - make serve_test

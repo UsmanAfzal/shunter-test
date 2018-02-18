@@ -37,9 +37,6 @@ REL_TAG=$(shell curl -s $(LATEST_REL) | jq -r '.[0].tag_name')
 install:
 	@npm i
 
-install_test:
-	@npm i --silent
-
 # When run in gocd it creates a version folder then installs npm packages
 install_to_release:
 	git checkout -b release $(REL_TAG)
