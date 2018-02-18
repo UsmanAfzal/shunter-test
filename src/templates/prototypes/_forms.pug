@@ -1,0 +1,126 @@
+extends ../../layouts/layout.pug
+block content
+  -var thingPage = true
+
+  .section--primary(tabindex=0)#content
+    .container
+      h1 Form elements
+
+  section
+    .container
+      h2 HTML &lt;form&gt; Tag
+      //- action, method
+      //- mixin accepts attributes and block content
+      +form('javascript:console.log("form action")', 'post')
+        +button('Submit', 'btn--primary', 'submit')
+
+
+      h2 HTML &lt;input&gt; Text
+
+      //- type, label, name, id
+      //- mixin accepts attributes
+      +input('text', 'Full name', 'name', 'txtName')
+      +input('text', 'Email Address', 'email', 'txtEmail')
+
+      //- form input with error message
+      label(for='form-with-error') Telephone
+      p.message--error Please enter a valid telephone number
+      input(id='form-with-error' name='Telephone' type='text')
+
+
+      h2 HTML &lt;input&gt; Checkbox
+
+      +fieldset('Which part of the day do you prefer?')
+        +input('checkbox', 'Day', 'time-of-day', 'chkDay')
+        +input('checkbox', 'Night', 'time-of-day', 'chkNight')
+
+
+      h2 HTML &lt;input&gt; Radio
+
+      +fieldset('How do you wish to be contacted?')
+        +input('radio', 'Email', 'contact-method', 'rdEmail')
+        +input('radio', 'Phone', 'contact-method', 'rdPhone')
+        +input('radio', 'Text message', 'contact-method', 'rdTxtMsg')
+
+
+      h2 HTML &lt;input&gt; Radio (__inline)
+
+      +fieldset('How do you wish to be contacted?')
+        +input('radio', 'Email', 'radio-group-inline', 'rdEmailInline')
+        +input('radio', 'Phone', 'radio-group-inline', 'rdPhoneInline')
+        +input('radio', 'Text message', 'radio-group-inline', 'rdTxtMsgInline')
+
+
+      h2 HTML &lt;input&gt; Radio (__verbose)
+
+      +fieldset('How do you wish to be contacted?')
+        +input('radio', 'Email', 'radio-group-verbose', 'rdEmailVerbose')
+        p This option confirms communication by email
+        +input('radio', 'Phone', 'radio-group-verbose', 'rdPhoneVerbose')
+        p This option confirms communication by telephone
+        +input('radio', 'Text message', 'radio-group-verbose', 'rdTxtMsgVerbose')
+        p This option confirms communication by text message
+
+
+      h2 HTML &lt;input&gt; File
+
+      ol.list--pipe__deep
+        li
+          figure.svg--icon(data-file-upload='icon')
+              include ../../icons/file.svg
+          .list--details
+            h3 Attach your petition template
+
+            +input('file', 'Choose file', 'file-uploader', 'fileUpload', 'button', '2097152')(class='btn--primary')
+
+            p(data-file-upload='status') No file(s) selected
+
+
+      h2 HTML &lt;textarea&gt; Tag
+      //- label, id
+      //- mixin accepts attributes
+      +textarea('Leave a comment', 'txtComment')
+
+
+      h2 HTML &lt;button&gt; Tag
+      //- value, style, type
+      //- mixin accepts attributes
+      +button('Submit', 'btn--primary', 'submit', '')
+      +button('Reset', 'btn--primary', 'reset')
+      +button('Disabled', 'btn--disabled')(disabled)
+
+
+      h2 HTML &lt;select&gt; Tag
+      //- label, name, id)
+      //- mixin accepts block content
+      +select('Select a house', 'ddlHouse', 'house')
+        +option('House of Commons', 'HoC')
+        +option('House of Lords', 'HoL')
+
+
+      h2 HTML &lt;option&gt; Tag
+      //- value, valueAttrib
+      //- mixin accepts attributes
+      +select('Option where values use different string', 'optionID', 'optionName')
+        +option('House of Commons', 'HoC')
+
+      +select('Option where values use the same string', 'optionID1', 'optionName1')
+        +option('House of Commons')
+
+
+      h2 HTML &lt;optgroup&gt; Tag
+      //- label
+      //- mixin accepts block content
+      +select('Select a house', 'ddlHouse1', 'house1')
+        +optgroup('House')
+          +option('House of Commons', 'HoC')
+          +option('House of Lords', 'HoL')
+
+
+      h2 HTML &lt;fieldset&gt; Tag
+      //- legend
+      //- mixin accepts block content
+      +fieldset('How do you wish to be contacted?')
+        +input('radio', 'Email', 'contact-method1', 'rdEmail1')
+        +input('radio', 'Phone', 'contact-method1', 'rdPhone1')
+        +input('radio', 'Text message', 'contact-method1', 'rdTxtMsg1')

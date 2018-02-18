@@ -1,0 +1,22 @@
+extends ../../layouts/layout.pug
+block content
+  -var thingPage = true
+
+  .section--primary(tabindex=0)#content
+    .container
+      h1 Islington North
+      +map('/templates/prototypes/map.html.json', 'Interactive map of Islington North')
+        p Map of constituency is unavailable.
+
+  section
+    .container
+      ol.list--block
+        +list--block('Jeremy Corbyn', 'MP for Islington North', 'Labour', '/images/placeholder_members_image.png')
+
+  section
+    .container
+      h2 Former MPs
+      ol.list--pipe
+        -var name = true
+        +list--pipe('', '7 May 2015 to 3 May 2017', 'Jeremy Corbyn')
+        +list--pipe('', '6 May 2010 to 30 Mar 2015', 'Jeremy Corbyn')

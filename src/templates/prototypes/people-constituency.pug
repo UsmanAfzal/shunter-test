@@ -1,0 +1,13 @@
+extends ../../layouts/layout.pug
+block content
+  -var thingPage = true
+
+  .section--primary(tabindex=0)#content
+    .container
+      h1 Ms Diane Abbott - Current and former constituencies
+
+  section
+    .container
+      ol.list--block
+        +list--block__accessible('Hackney North and Stoke Newington', '7 May 2015 to present')
+        +list--block__accessible('Hackney North and Stoke Newington', '6 May 2010 to 30 Mar 2015')

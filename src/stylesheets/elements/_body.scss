@@ -1,0 +1,31 @@
+@import '../settings/colours';
+@import '../settings/fonts';
+@import '../settings/spacing';
+@import '../settings/mixins';
+@import '../objects/grid-settings';
+@import '../elements/semantic-elements';
+
+html {
+  font-size: 16px;
+}
+
+body {
+  padding: 0;
+  color: $grey-1;
+  direction: ltr;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: $grey-5;
+  font-family: $base-font-stack;
+  // font-smoothing - anti aliasing
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  // font-feature-settings - vertically aligned typeface
+  // https://developer.mozilla.org/en/docs/Web/CSS/font-feature-settings
+  font-feature-settings: 'pnum';
+  // Experimental text decoration declaration (webkit only)
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-skip
+  -webkit-text-decoration-skip: ink;
+  text-decoration-skip: ink;
+}

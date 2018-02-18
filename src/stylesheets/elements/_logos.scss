@@ -1,0 +1,24 @@
+// Variables inherited from 'settings/_spacing.scss' and 'settings/_colours.scss'
+
+header {
+  .logo {
+    width: auto;
+    height: 48px;
+    color: $deep-purple;
+    margin-bottom: 0;
+    text-decoration: none;
+  }
+  @include media($desktop) {
+    .logo {
+      height: 54px;
+    }
+  }
+}
+
+footer {
+  .logo {
+    color: $grey-5;
+    margin-top: $base-spacing-unit-medium;
+    margin-bottom: $base-spacing-unit-tiny;
+  }
+}

@@ -1,0 +1,320 @@
+/*--- Header ---*/
+@mixin headings-margin-top($value) {
+  h2, h3, h4, h5, h6 {
+    &:first-of-type {
+      margin-top: $value;
+    }
+  }
+}
+
+/*--- Font Size [size] Pass Pixel value to get REM/Pixel fallback ---*/
+
+@mixin fontsize($size){
+  font-size:   $size + 0px;
+  font-size:   ($size / 16) + 0rem;
+}
+
+/*--- Border Radius [top left, top right, bottom right, bottom left] ---*/
+
+@mixin border-radius($top-left, $top-right, $bot-right, $bot-left) {
+  border-top-left-radius: ($top-left + 0px);
+  border-top-right-radius: ($top-right + 0px);
+  border-bottom-right-radius: ($bot-right + 0px);
+  border-bottom-left-radius: ($bot-left + 0px);
+}
+
+/*--- Theme [background colour, typography, link colour, accent colour] ---*/
+
+@mixin theme($background, $color, $link-color, $hover-color, $accent) {
+  color: $color;
+  border-color: $accent;
+  background-color: $background;
+
+  a {
+    @include links(
+      $link-color, 	// a:link colour
+      underline,	 	// a:link decoration
+      $color, 			// a:visited color
+      $hover-color	// a:hover color
+    );
+    &:focus {
+      color: $deep-purple;
+      text-decoration: none;
+    }
+  }
+  h1, h2, h3, h4, h5 {
+    color: $color;
+
+    &:after {
+      background-color: $accent;
+    }
+  }
+}
+
+/*--- Accent [line-break colour] ---*/
+
+@mixin accent($color) {
+  h1 {
+    &:after {
+      background-color: $color;
+    }
+  }
+  border-color: $color;
+}
+
+/*--- Screen Reader ---*/
+
+@mixin screenreader {
+  width: 1px;
+  padding: 0;
+  height: 1px;
+  margin: -1px;
+  border: none;
+  overflow: hidden;
+  position: absolute;
+  clip: rect(0 0 0 0);
+}
+
+/*--- Line Break [height, width, colour] ---*/
+
+@mixin line-break($height, $width) {
+  height: $height;
+  width: $width;
+  margin-top: ($base-spacing-unit-medium - 2); // -2px to compensate for divider height
+  margin-bottom: ($base-spacing-unit-medium - 2); // -2px to compensate for divider height
+}
+
+/*--- Link [link colour, link decoration, visited colour, hover colour] ---*/
+
+@mixin links($link-color, $link-decoration, $visited-color, $hover-color) {
+  &:link {
+    color: $link-color;
+    text-decoration: $link-decoration;
+  }
+  &:visited {
+    color: $visited-color;
+  }
+  &:hover {
+    color: $hover-color;
+  }
+}
+
+/*--- Navigation Control [float, margin left and margin right] ---*/
+
+@mixin navigation-control($float, $margin-left, $margin-right) {
+  float: $float;
+  margin-left: $margin-left;
+  margin-right: $margin-right;
+}
+
+/*--- CSS Animation [duration, timing function, delay, interation count, name] ---*/
+
+@mixin css-animation($duration, $timing-func, $delay, $iteration, $name) {
+  animation-duration: $duration;
+  animation-timing-function: $timing-func;
+  animation-delay: $delay;
+  animation-iteration-count: $iteration;
+  animation-name: $name;
+}
+
+/*--- Remove top/bottom margins ---*/
+
+@mixin last-child() {
+  :last-child {
+    margin-bottom: 0;
+  }
+}
+
+/*--- Button Base ---*/
+
+@mixin btn {
+  cursor: pointer;
+  position: relative;
+  border-radius: 4px;
+  text-align: center;
+  color: $deep-purple;
+  display: inline-block;
+  background-color: $grey-5;
+  margin-right: $base-spacing-unit;
+  padding: ($base-spacing-unit - 2) ($base-spacing-unit-tiny - 2);
+
+  &:focus, &:active {
+    outline: none;
+  }
+}
+
+/*--- Button [colour, background, background-hover] ---*/
+
+@mixin button($color, $background, $background-hover, $border-hover:null) {
+  @include btn;
+  @include links(
+    $color, 			// a:link colour
+    none, 				// a:link decoration
+    $color, 			// a:visited color
+    $white 				// a:hover color
+  );
+  color: $color;
+  background-color: $background;
+  border: 2px solid $background;
+
+  &:hover, &:focus {
+    color: $color;
+    background-color: $background-hover;
+
+    @if ($border-hover) {
+      border-color: $border-hover;
+    }
+  }
+  path, polygon {
+    fill: $color;
+  }
+}
+
+@mixin button-transparent($color) {
+  @include btn;
+  &:link {
+    color: $color !important;
+    text-decoration: none !important;
+  }
+  border: 1px solid;
+  background-color: transparent;
+}
+
+/*--- Media Queries [size] ---*/
+
+@mixin media($size) {
+  @if $size == $desktop {
+    @media (min-width: $desktop) {
+      @content;
+    }
+  }
+  @else if $size == $tablet {
+    @media (min-width: $tablet) {
+      @content;
+    }
+  }
+}
+
+/*--- Clearfix for containing floats ---*/
+
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+}
+
+/*--- Flexbox grid ---*/
+
+@mixin flex($elem1-width, $elem2-width:null, $gutter-width:null) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  > :nth-child(1) {
+    flex-basis: if(
+      $gutter-width,
+      calc(#{$elem1-width} - (#{$gutter-width} / 2)),
+      $elem1-width
+    );
+  }
+
+  > :nth-child(2) {
+    flex-basis: if(
+      $gutter-width,
+      calc(#{$elem2-width or $elem1-width} - (#{$gutter-width} / 2)),
+      $elem2-width or $elem1-width
+    );
+  }
+
+  > :not(:nth-child(1), :nth-child(2)) {
+    flex-basis: 100%;
+  }
+}
+
+/*--- Heading Typography Mixins ---*/
+
+@mixin alpha {
+  @include fontsize(34);
+  margin-top: 0;
+  line-height: 1.059; // 36px;
+
+  @include media($desktop) {
+    @include fontsize(44);
+    line-height: 1.091; // 48px
+  }
+}
+@mixin beta {
+  @include fontsize(27);
+  line-height: 1.111; // 30px;
+
+  @include media($desktop) {
+    @include fontsize(32);
+    line-height: 1.125; // 36px
+  }
+}
+@mixin gamma {
+  @include fontsize(24);
+  line-height: 1.250; // 30px;
+
+  @include media($desktop) {
+    @include fontsize(26);
+    line-height: 1.154; // 30px
+  }
+}
+@mixin delta {
+  @include fontsize(20);
+  line-height: 1.2; // 24px;
+
+  @include media($desktop) {
+    @include fontsize(22);
+    line-height: 1.091; // 24px
+  }
+}
+@mixin epsilon {
+  @include fontsize(16);
+  line-height: 1.125; // 18px;
+
+  @include media($desktop) {
+    @include fontsize(20);
+    line-height: 1.2; // 24px
+  }
+}
+@mixin zeta {
+  @include fontsize(16);
+  line-height: 1.125; // 18px;
+
+  @include media($desktop) {
+    @include fontsize(18);
+    line-height: 1.334; // 24px;
+  }
+}
+
+/*--- Smaller Typography Mixins ---*/
+
+@mixin milli {
+  @include fontsize(14);
+  @include media($tablet) {
+    @include fontsize(16);
+  }
+}
+@mixin micro {
+  @include fontsize(14);
+  font-weight: 400;
+}
+
+/*--- Block Mixins ---*/
+
+@mixin block {
+  padding: $base-spacing-unit-small;
+  background-color: white;
+  @include headings-margin-top(0);
+  @include last-child;
+}
+
+@mixin block__deep {
+  @include block;
+  padding-top: $base-spacing-unit-extra-large;
+  padding-bottom: $base-spacing-unit-extra-large;
+}

@@ -1,0 +1,280 @@
+// Variables inherited from 'settings/_spacing.scss' and 'settings/_colours.scss'
+
+//  List Core Settings
+
+ul, ol {
+  padding: 0;
+  margin-left: $base-spacing-unit-large;
+
+  li {
+    padding: 0;
+  }
+}
+dl, dt, dd {
+  margin: 0;
+  padding: 0;
+}
+
+// List Base Settings
+
+@mixin list {
+  @include list-headings;
+  margin-left: 0;
+  list-style: none;
+
+  > ol {
+    list-style: decimal;
+  }
+  > ul {
+    list-style: disc;
+  }
+  li {
+    position: relative;
+    @include headings-margin-top(0);
+    @include last-child;
+    * {
+      margin-bottom: $base-spacing-unit;
+    }
+    &.active {
+      color: $deep-purple;
+      font-weight: 500;
+      text-decoration: none;
+    }
+  }
+}
+.list {
+  @include list;
+}
+
+@mixin list--details {
+  margin-top: 0;
+  display: inline-block;
+  word-break: break-word;
+
+  :last-child {
+   margin-bottom: 0;
+  }
+}
+.list--details {
+  @include list--details
+}
+
+// List Options
+
+@mixin list--inline {
+  @include list;
+  @include clearfix;
+
+  ol, ul {
+    margin: 0 (-$base-spacing-unit-tiny + 6);
+  }
+  li {
+    float: left;
+  }
+  a, span {
+    display: block;
+    position: relative;
+    padding: ($base-spacing-unit-tiny / 2) $base-spacing-unit-tiny;
+  }
+}
+.list--inline {
+  @include list--inline;
+}
+
+@mixin list--details__inline {
+  @include list--details;
+  * {
+    display: inline;
+  }
+}
+.list--details__inline {
+  @include list--details__inline;
+}
+
+@mixin list--block {
+  width: 100%;
+  @include list;
+
+  > li {
+    @include block;
+    width: 100%;
+    margin-bottom: $base-spacing-unit;
+    @media(min-width: $smartphone) {
+      display: inline-flex;
+      .list--details {
+        flex-basis: 100%;
+      }
+    }
+    /* IE11 Fix */
+    @media(-ms-high-contrast: none) {
+      *::-ms-backdrop, figure + .list--details {
+        padding-left: $base-spacing-unit-small;
+      }
+    }
+  }
+}
+
+.list--block {
+  @include list--block;
+}
+
+.list--block__deep {
+  @include list--block;
+  li {
+    @include block--deep;
+  }
+}
+
+@mixin list--block__inline {
+  @include list--block;
+  @include clearfix;
+
+  flex-wrap: wrap;
+  flex-direction: row;
+  display: inline-flex;
+
+  li {
+    width: auto;
+    flex-grow: 1;
+    display: inline-block;
+    margin-right: $base-spacing-unit;
+  }
+}
+.list--block__inline {
+  @include list--block__inline;
+}
+
+@mixin list--block__inline-50 {
+  @include list--block__inline;
+
+  li {
+    width: 100%;
+    @media(min-width: $desktop){
+      flex-grow: 0;
+      width: calc(50% - #{$base-spacing-unit});
+    }
+  }
+}
+.list--block__inline-50 {
+  @include list--block__inline-50;
+}
+
+@mixin list--pipe {
+  @include list;
+  > li {
+    width: 100%;
+    margin-bottom: 0;
+    background: transparent;
+    border-bottom: solid 1px $grey-3;
+    padding: $base-spacing-unit-tiny 0 ($base-spacing-unit-tiny - 1) 0;
+    @media(min-width: $smartphone) {
+      display: inline-flex;
+      .list--details {
+        flex-basis: 100%;
+      }
+    }
+    /* IE11 Fix */
+    @media(-ms-high-contrast: none) {
+      *::-ms-backdrop, figure + .list--details {
+        padding-left: $base-spacing-unit-large;
+      }
+    }
+  }
+  > li:first-of-type {
+    border-top: solid 1px $grey-3;
+    padding-top: ($base-spacing-unit-tiny - 1);
+  }
+}
+
+.list--pipe {
+  @include list--pipe;
+}
+
+aside .list--pipe li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.list--pipe__deep {
+  @include list--pipe;
+  > li {
+    padding-top: $base-spacing-unit-extra-large;
+    padding-bottom: ($base-spacing-unit-extra-large - 1);
+  }
+  > li:first-of-type {
+    padding-top: ($base-spacing-unit-extra-large - 1);
+  }
+}
+
+.list--definition {
+  margin: 0 0 $base-spacing-unit-small;
+
+  & dt {
+    float: left;
+    padding-right: $base-spacing-unit-tiny;
+  }
+}
+
+.list--tab {
+  @include list--inline;
+  border-bottom: 2px solid $grey-4;
+
+  li {
+    margin-right: $base-spacing-unit-medium;
+  }
+  li.active {
+    padding: ($base-spacing-unit + 2) 0;
+    border-bottom: 4px solid $purple;
+  }
+  a {
+    padding: ($base-spacing-unit + 2) 0;
+  }
+}
+
+// Numbered / Roman Numeral / Alphabetical Lists
+
+.list--number, .list--roman, .list--alpha {
+  @include list;
+  li {
+    margin-left: $base-spacing-unit-large;
+  }
+}
+
+.list--number {
+  list-style-type: decimal;
+}
+
+.list--roman {
+  list-style-type: lower-roman;
+}
+
+.list--alpha {
+  list-style-type: lower-alpha;
+}
+
+// List style for <ul> tags without any classes, nested
+// inside elements with class `.list--{{modifier}}` or
+// <ol> tags.
+
+[class*=list], ol {
+  ul:not([class*=list]) {
+    list-style-type: disc;
+    > li {
+      margin-left: 0;
+    }
+    ul:not([class*=list]) {
+      list-style-type: circle;
+      ul:not([class*=list]) {
+        list-style-type: square;
+      }
+    }
+  }
+}
+
+// Footer list
+
+footer .list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

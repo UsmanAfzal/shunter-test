@@ -1,0 +1,18 @@
+extends ../../layouts/layout.pug
+block content
+  -var thingPage
+
+  .section--primary
+    .container
+      //- Page Title
+      h1 Current and former constituencies
+
+      p A to Z - Showing results for A
+      //- Letter Navigation
+      include ../../components/navigation-letter.pug
+
+  section(tabindex=0)#content
+    .container
+      //- Result List
+      ol.list--block
+        +list--block('Nigel Adams', 'Selby & Ainsty', 'Labour')

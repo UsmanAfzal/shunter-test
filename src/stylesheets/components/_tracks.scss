@@ -1,0 +1,16 @@
+.track  {
+  position: relative;
+  @include headings-margin-top(0);
+  @include last-child;
+  padding: 0 0 0 $base-spacing-unit-small;
+
+  &:before {
+    position: absolute;
+    content: '';
+    background-color: $grey-1;
+    width: 1px;
+    height: calc(100% - 21px);
+    left: -1px;
+    top: 10px;
+  }
+}

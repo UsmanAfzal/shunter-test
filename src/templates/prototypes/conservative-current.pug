@@ -1,0 +1,20 @@
+extends ../../layouts/layout.pug
+block content
+  -var thingPage
+
+  .section--primary
+    .container
+      //- Page Title
+      h1
+        span Conservative MPs and Lords
+        +link('#', '- :startdate - :enddate parliament')
+        span.lead A to Z
+
+      p A to Z - select a letter
+      include ../../components/navigation-letter.pug
+
+  section(tabindex=0)#content
+    .container
+      ol.list--block
+        +list--block('Margot James', 'Stourbridge', 'Conservative', 'https://api-parliament-uk.azure-api.net/Staging/photo/0qLRSwb3.jpeg?crop=CU_1:1&width=186&quality=80')
+        +list--block('Margot James', 'Stourbridge', 'Conservative', 'https://api-parliament-uk.azure-api.net/Staging/photo/0qLRSwb3.jpeg?crop=CU_1:1&width=186&quality=80')

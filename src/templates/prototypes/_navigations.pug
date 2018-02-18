@@ -1,0 +1,21 @@
+extends ../../layouts/layout.pug
+block content
+  -var thingPage = true
+
+  .section--primary(tabindex=0)#content
+    .container
+      //- Page Title
+      h1 Navigation options
+      h2 A to Z (navigation-letter)
+      //- Letter Navigation
+      include ../../components/navigation-letter
+
+  section
+    .container
+      h2 Pagination (navigation-number)
+      include ../../components/navigation-number
+
+  section
+    .container
+      h2 Tabs (navigation-tab)
+      include ../../components/navigation-tab

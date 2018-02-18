@@ -1,0 +1,10 @@
+extends ../../layouts/layout.pug
+block content
+  -var thingPage = true
+
+  .section--primary(tabindex=0)#content
+    .container
+      .block--border__bottom
+        h1 Islington North
+        +map('/templates/prototypes/map.html.json', 'Interactive map of Islington North')
+          p Map of constituency is unavailable.

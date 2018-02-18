@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+  -var pugin = true
+  include ../elements/head.pug
+  body
+    script.
+      document.body.className = ((document.body.className) ? document.body.className + ' has-js' : 'has-js');
+    include ../elements/_elements.pug
+    include ../components/status__cookie.pug
+    include ../components/header.pug
+    main
+      block content
+    include ../components/footer.pug
+    script(src="/javascripts/main.js")
+    block script

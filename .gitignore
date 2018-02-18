@@ -1,2 +1,9 @@
+_public
+node_modules
+parliament-fonts
+npm-debug.log
+reports
+.sass-cache
+.DS_Store
 .idea/
-node_modules/
+.vscode/

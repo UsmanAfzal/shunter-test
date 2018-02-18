@@ -1,0 +1,3 @@
+# Build script
+script:
+  - make serve & sleep 20; make test;

@@ -1,0 +1,15 @@
+extends ../../layouts/layout.pug
+block content
+  -var thingPage
+
+  .section--primary
+    .container
+      h1 Parties and groups
+
+  section(tabindex=0)#content
+    .container
+      include ../../components/navigation-tab
+      ol.list--block
+        +list--block__parties('Conservative', '345')
+        +list--block__parties('Labour', '9')
+        +list--block__parties('Vanguard Unionist Progressive Party', '786')

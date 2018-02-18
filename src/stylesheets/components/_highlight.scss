@@ -1,0 +1,60 @@
+/*--- Hero Component ---*/
+
+.hero {
+  @extend .theme--deep-purple;
+  @include headings-margin-top(0);
+  @include last-child;
+  @include accent($grey-5);
+  padding: $base-spacing-unit-tiny 0 ($base-spacing-unit-tiny * 2);
+
+  @include media($desktop) {
+    padding: $base-spacing-unit-medium 0 ($base-spacing-unit-medium * 2) 0;
+
+    .container {
+      padding-right: ($base-spacing-unit-extra-large * 6);
+    }
+  }
+}
+
+/*--- Status Components ---*/
+
+.status--banner {
+  @include milli;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  @include headings-margin-top(0);
+  @include last-child;
+  @extend .theme--deep-purple--light;
+  padding: ($base-spacing-unit + 1) 0;
+
+  .container {
+    display: flex;
+  }
+  p {
+    line-height: 1.125; // 18px;
+    margin-right: $base-spacing-unit-tiny;
+  }
+  * {
+    margin-bottom: 0;
+    align-self: center;
+  }
+}
+
+.has-js .cookie {
+  display: none;
+}
+
+.status--highlight {
+  border-left-style: solid;
+  @extend .theme--purple--light;
+  @include headings-margin-top(0);
+  @include last-child;
+  padding: $base-spacing-unit-small;
+  border-left-width: $base-spacing-unit;
+}
+
+/*--- Label Components ---*/
+
+.status--banner .hint {
+  margin-right: $base-spacing-unit-tiny;
+}

@@ -1,0 +1,222 @@
+a {
+  @include links(
+    $link, 				      // a:link colour
+    underline,		      // a:link decoration
+    $link-visited, 			// a:visited color
+    $link-hover 		    // a:hover color
+  );
+  &:active, &:focus {
+    color: $deep-purple;
+    text-decoration: none;
+    background-color: $mint;
+    outline: 3px solid $mint;
+  }
+}
+
+/*--- Figure ---*/
+
+figure a {
+  display: block;
+}
+figcaption a {
+  display: inline-block;
+}
+
+/*--- Footer ---*/
+
+footer a  {
+  @include links(
+    $grey-5, 		        // a:link colour
+    underline,	        // a:link decoration
+    $grey-5, 		        // a:visited color
+    $grey-3 		        // a:hover color
+  );
+  &:focus {
+    color: $deep-purple;
+    text-decoration: none;
+  }
+}
+
+/*--- Dropdown ---*/
+
+.dropdown__toggle a {
+  display: block;
+  padding: $base-spacing-unit-small;
+  @include links(
+    $grey-1, 			      // a:link colour
+    none,				        // a:link decoration
+    $grey-1, 		        // a:visited color
+    $grey-1             // a:hover color
+  );
+  &:focus {
+    text-decoration: underline;
+    background-color: transparent;
+    outline: none;
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    border-top: 6px solid $grey-1;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    margin-left: 8px;
+    top: calc(50% - 3px); // Vertical centering (50% of the parent div height - (arrow size / 2))
+  }
+}
+
+.open .dropdown__toggle a {
+  &:after {
+    border-top: none;
+    border-bottom: 6px solid $grey-1;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    top: calc(50% - 3px); // Vertical centering (50% of the parent div height - (arrow size / 2))
+  }
+}
+
+.block .dropdown .dropdown__toggle a {
+  padding: 0;
+}
+
+/*--- Maps ---*/
+
+.map .leaflet-bar a {
+  background-color: $grey-5;
+  @include links(
+    $link, 			        // a:link colour
+    none, 			        // a:link decoration
+    $link, 			        // a:visited color
+    inherited 	        // a:hover color
+  );
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:first-child {
+    border-bottom: 1px solid #cbc9cd;
+  }
+}
+
+/*--- Navigation ---*/
+
+.navigation--main a {
+  @include links(
+    $grey-1, 		        // a:link colour
+    none,				        // a:link decoration
+    $grey-1, 		        // a:visited color
+    $grey-1 		        // a:hover color
+  );
+  &:link {
+    padding: $base-spacing-unit-tiny 3px;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:hover, &:active {
+    text-decoration: underline;
+  }
+}
+
+.navigation--letter li a {
+  &:link {
+    padding: ($base-spacing-unit-tiny - 3px) 0;
+    @include media($desktop) {
+      padding: ($base-spacing-unit + 2px) 0;
+    }
+    background-color: $white;
+    color: $link;
+    text-decoration: none;
+  }
+  &:hover {
+    background-color: $link;
+    color: $white;
+  }
+}
+
+.navigation--letter a,
+.navigation--number a {
+  min-width: 24px;
+}
+
+/*--- Themes Alternative Focus ---*/
+
+.theme--mint,
+.theme--warning,
+.theme--success {
+  a:focus {
+    background: $grey-5;
+    outline: 3px solid $grey-5;
+  }
+}
+
+/*--- hint decoration ---*/
+
+[class*="hint"][class*="theme--"] a:link {
+  text-decoration: none;
+}
+
+/*--- Search Global ---*/
+
+@media (max-width: $desktop - 1) {
+  .search__global {
+    &:not(.open) {
+      .search__global__toggle {
+        transition: background-color 0.15s linear 0.15s;
+      }
+      [data-icon="search"] {
+        transition: opacity 0.15s linear 0.15s;
+      }
+      [data-icon="close"] {
+        opacity: 0;
+      }
+    }
+    &.open {
+      .search__global__toggle {
+        background-color: transparent;
+      }
+      button [data-icon="search"] {
+        opacity: 1;
+      }
+      [data-icon="close"] {
+        transition: opacity 0.15s linear 0.15s;
+      }
+      [data-icon="search"] {
+        opacity: 0;
+      }
+    }
+  }
+  .search__global__toggle {
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 50px;
+    position: absolute;
+    background-color: $deep-purple;
+    padding: $base-spacing-unit $base-spacing-unit-small;
+
+    svg {
+      top: 15px;
+      position: absolute;
+    }
+    &:hover, &:focus, &:active {
+      outline: none;
+      background-color: $deep-purple;
+
+      svg[data-icon="search"] g {
+        fill: $grey-3;
+      }
+      svg[data-icon="close"] g {
+        stroke: $grey-3;
+      }
+    }
+  }
+}
+@include media($desktop) {
+  .search__global__toggle {
+    display: none;
+  }
+}

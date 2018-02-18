@@ -1,0 +1,156 @@
+extends ../../layouts/layout.pug
+block content
+  -var thingPage = true
+
+  .section--primary(tabindex=0)#content
+    .container
+      h1 Lists
+
+  section
+    .container
+      h2 Inline box list (50% width)
+      ol.list--block__inline-50
+        // Name, Count
+        +list--block__inline('Conservative', '345')
+        +list--block__inline('Labour', '9')
+        +list--block__inline('Conservative', '345')
+        +list--block__inline('Labour', '9')
+        +list--block__inline('Conservative', '345')
+        +list--block__inline('Labour', '9')
+
+  section
+    .container
+      h2 Inline box list (50% width &amp; Inline Text)
+      ol.list--block__inline-50
+        // Name, Count
+        +list--block__inline('Conservative', '345', true)
+        +list--block__inline('Labour', '9', true)
+        +list--block__inline('Conservative', '345', true)
+        +list--block__inline('Labour', '9', true)
+        +list--block__inline('Conservative', '345', true)
+        +list--block__inline('Labour', '9', true)
+
+  section
+    .container
+      h2 Box list
+      h3 Default
+      ol.list--block
+        // Name, Constituency, Party, Image
+        +list--block('Nigel Adams', 'Selby & Ainsty', 'Labour')
+        +list--block('Nigel Adams', 'Selby & Ainsty', 'Labour', 'https://api-parliament-uk.azure-api.net/Staging/photo/0qLRSwb3.jpeg?crop=CU_1:1&width=186&quality=80', 'Margot James')
+        -var lords_list = true
+        +list--block('Lord Aberdare', 'House of Lords', 'Crossbench', '/images/placeholder_members_image.png')
+
+      h3 Parties
+      ol.list--block
+        // Party, Count
+        +list--block__parties('Labour', '365')
+
+      h3 Accessible
+      ol.list--block
+        // Constituency, Date
+        +list--block__accessible('', '2017 to present')
+        +list--block__accessible('Selby & Ainsty', '6 May 2010 to 30 Mar 2015')
+
+      h3 Generic
+      ol.list--block
+        -var list_box_h3 = true
+        // Heading, Content
+        +list--block__generic('Parties and groups', 'Find MPs and Lords by their party or group.')
+          // Extendable
+            p Further content can be added
+          ul
+            li Item 1
+            li Item 2
+            li Item 3
+              ul
+                li Item 1
+                li Item 2
+                li Item 3
+
+  section
+    .container
+      h2 Pipe list
+      h3 Default
+      ol.list--pipe
+        // Constituency, Date, Name
+        +list--pipe('Selby & Ainsty', '8 Jun 2017 to present')
+        +list--pipe('Windsor', '8 Jun 2017 to present', 'Adam Afriyie')
+        -var member = true
+        +list--pipe('Windsor', '8 Jun 2017 to present')
+        li
+          .list--details
+            h3.milli House of Commons Role
+            h4 MP for Hackney North and Stoke Newington
+            p Jun 1986 to present
+
+      h3 Media
+      ol.list--pipe
+        // Image URL, Image Alt, Heading, Button URL, Button Text
+        +list--pipe__media('https://api-parliament-uk.azure-api.net/Staging/photo/0qLRSwb3.jpeg?crop=MCU_3:2&width=260&quality=80', 'Margot James', '3:2 portrait', 'https://api-parliament-uk.azure-api.net/Staging/photo/0qLRSwb3.jpeg?crop=MCU_3:2&quality=80&download=true', 'Download jpeg (3000 x 2000)')
+        +list--pipe__media('https://api-parliament-uk.azure-api.net/Staging/photo/0qLRSwb3.jpeg?crop=MCU_3:4&width=260&quality=80', 'Margot James', '3:4 portrait', 'https://api-parliament-uk.azure-api.net/Staging/photo/0qLRSwb3.jpeg?crop=MCU_3:4&quality=80&download=true', 'Download jpeg (1500 x 2000)')
+        +list--pipe__media('https://api-parliament-uk.azure-api.net/Staging/photo/0qLRSwb3.jpeg?crop=CU_1:1&width=260&quality=80', 'Margot James', '1:1 portrait', 'https://api-parliament-uk.azure-api.net/Staging/photo/0qLRSwb3.jpeg?crop=CU_1:1&quality=80&download=true', 'Download jpeg (1500 x 1500)')
+
+      h3 Documents
+      ol.list--pipe__deep
+        li
+          figure.svg--icon.svg--file__word
+            include ../../icons/file.svg
+          .list--details
+            h3 Document template
+            +buttonLink('#', 'Download document template', 'btn--primary', 'download')
+              include ../../icons/download.svg
+            p If you need a different format, email #[+link('#', 'example@parliament.uk')].
+
+  section
+    .container
+      h2 Basic Lists
+      h3 Bulleted lists
+      ul
+        li Item 1
+        li Item 2
+        li Item 3
+      h3 Numbered lists
+      ol
+        li Item 1
+        li Item 2
+        li Item 3
+      h3 Roman numeral lists
+      ol.list--roman
+        li Item 1
+        li Item 2
+        li Item 3
+      h3 Alphabetical lists
+      ol.list--alpha
+        li Item 1
+        li Item 2
+        li Item 3
+      h3 Unmarked lists
+      ul.list
+        li Item 1
+          ul
+            li Item 1
+        li Item 2
+          ol
+            li Item 1
+        li Item 3
+      h3 Inline lists
+      ul.list--inline
+        li Item 1
+        li Item 2
+        li Item 3
+      h3 Nested lists
+      ul
+        li Item 1
+          ul
+            li Item 1
+              ul
+                li Item 1
+                  ol.list--roman
+                    li Item 1
+                      ul
+                        li Item 1
+                          ul
+                            li Item 1
+                              ul
+                                li Item 1

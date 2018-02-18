@@ -1,0 +1,52 @@
+doctype html
+html(lang="en")
+  - var pugin = true
+  include ../elements/head.pug
+  body.no-js
+    include ../elements/mixins.pug
+    include ../elements/skip-content.pug
+      .section--primary
+        .container
+          h1 Parliamentary Digital Service
+
+      section(tabindex=0)#content
+        .container
+          h2 Templates
+          ul
+            li #[+link('/templates/prototypes/conservative-current.html', 'Conservative current')]
+            li #[+link('/templates/prototypes/front-page.html', 'Front Page')]
+            li #[+link('/templates/prototypes/house-commons-members-current.html', 'House of Commons Members')]
+            li #[+link('/templates/prototypes/house-lords-members-current.html', 'House of Lords Members Current')]
+            li #[+link('/templates/prototypes/party-current.html', 'Party Current')]
+            li #[+link('/templates/prototypes/people-id.html', 'People ID')]
+            li #[+link('/templates/prototypes/people-constituency.html', 'People Constituency')]
+            li #[+link('/templates/prototypes/constituencies.html', 'Constituencies')]
+            li #[+link('/templates/prototypes/constituency.html', 'Constituency')]
+            li #[+link('/templates/prototypes/_map.html', 'Constituency map')]
+            li #[+link('/templates/prototypes/media-id.html', 'Media ID')]
+            li #[+link('/templates/prototypes/article.html', 'Article')]
+
+      section
+        .container
+          h2 Elements
+          ul
+            li #[+link('/templates/prototypes/_backgrounds.html', 'Backgrounds')]
+            li #[+link('/templates/prototypes/_buttons.html', 'Buttons')]
+            li #[+link('/templates/prototypes/_forms.html', 'Form elements')]
+            li #[+link('/templates/prototypes/_headings.html', 'Typography & Headings')]
+            li #[+link('/templates/prototypes/_lists.html', 'Lists')]
+            li #[+link('/templates/prototypes/_navigations.html', 'Navigations')]
+            li #[+link('/templates/prototypes/_tables.html', 'Tables')]
+            li #[+link('/templates/prototypes/_tracks.html', 'Tracks')]
+            li #[+link('/templates/prototypes/_toggles.html', 'Toggles')]
+            li #[+link('/templates/prototypes/_article.html', 'Article')]
+            li #[+link('/templates/prototypes/_search-results.html', 'Search results')]
+
+
+      section
+        .container
+          h3 Notes:
+          ul
+            li These are static html files
+            li Links will either not be working or go to the correct location
+            li Styles for desktop view are not complete
