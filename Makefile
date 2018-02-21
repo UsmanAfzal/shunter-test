@@ -102,6 +102,7 @@ watch:
 # Runs accessibility testing
 test:
 	@$(PA11Y)
+	@node src/scripts/w3c.js
 
 # Builds application
 build: lint css js images icons templates json
